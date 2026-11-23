@@ -2,9 +2,14 @@ pipeline {
     agent any
 
     stages {
-        stage('Checkout') {
+        stage('Gracze online') {
             steps {
-                git url: 'https://github.com/PeterPorzuczek/TimeRiddle.git'
+                powershell './steam/gracze.ps1'
+            }
+        }
+        stage('Nowosci od tworcow') {
+            steps {
+                powershell './steam/nowosci.ps1'
             }
         }
     }
