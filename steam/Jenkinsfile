@@ -2,12 +2,16 @@
 pipeline {
     agent any
 
+    parameters {
+        string(name: 'APPID', defaultValue: '730', description: 'Podaj Steam App ID gry')
+    }
+
     stages {
         stage('Gracze online') {
             steps {
                 powershell '''
                     $ErrorActionPreference = 'Stop'
-                    $appid = 570
+                    $appid = $env:APPID
 
                     $url = "https://api.steampowered.com/ISteamUserStats/GetNumberOfCurrentPlayers/v1/?appid=$appid"
 
